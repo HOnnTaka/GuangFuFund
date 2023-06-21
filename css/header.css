@@ -1,0 +1,259 @@
+header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	display: flex;
+	font-family: wczpt;
+	color: var(--color-2);
+	font-size: var(--font-size);
+	justify-content: space-between;
+	align-items: center;
+	padding: 25px 40px 20px;
+	max-height: 30vh;
+	z-index: 20;
+
+	/* logo */
+	&>img {
+		width: 10%;
+		filter: drop-shadow(0 0 10px var(--color-3));
+		/* backdrop-filter: blur(5px); */
+	}
+
+	/* btn */
+	& :is(a, article label) {
+		position: relative;
+		text-decoration: none;
+		color: var(--color-2);
+		z-index: 29;
+		margin: 0 20px;
+		cursor: pointer;
+		white-space: nowrap;
+		filter: drop-shadow(0 0 10px var(--color-3));
+		/* text-shadow: 1px 1px 0px  var(--color-3); */
+	}
+
+	& div {
+		position: relative;
+
+		&::before {
+			content: '';
+			position: absolute;
+			z-index: 29;
+			background: url("../img/illustration/circleon.png") no-repeat 0%/100%;
+			height: calc(2 * var(--font-size));
+			width: calc(2 * var(--font-size));
+			top: 50%;
+			transform: translate(calc(2 * var(--font-size)), -50%);
+			transition: .5s;
+			opacity: 0;
+			pointer-events: none;
+		}
+
+		&::after {
+			transition: .5s;
+			content: '';
+			position: absolute;
+			z-index: 26;
+			left: 0;
+			top: 50%;
+			transform: translate(0, -50%);
+			background: url("../img/illustration/cbgon2.png") no-repeat 0%/100%;
+			pointer-events: none;
+			width: calc(7 * var(--font-size));
+			height: calc(4 * var(--font-size));
+			opacity: 0;
+		}
+
+		&:is(:hover, :active) {
+			& a {
+				color: var(--color-3);
+			}
+
+			&::before {
+				transform: translate(0%, -50%);
+				opacity: 0.8;
+			}
+
+			&::after {
+				opacity: 0.7;
+			}
+		}
+	}
+
+	& nav {
+		margin-right: auto;
+		display: flex;
+		align-items: center;
+		position: relative;
+
+		& section {
+			display: flex;
+			align-items: center;
+
+			&.on div::after {
+				display: none;
+			}
+		}
+	}
+
+	& article {
+		max-width: 50%;
+		display: flex;
+		justify-content: flex-end;
+
+		&:nth-of-type(2) {
+			margin: 0 calc(var(--font-size));
+
+			& div::after {
+				transform: translate(-20%, -50%);
+			}
+
+			&:hover label {
+				color: var(--color-3);
+			}
+		}
+	}
+
+	& #searchBox {
+		& input[type=search] {
+			position: relative;
+			z-index: 29;
+			height: var(--font-size);
+			font-size: 20px;
+			vertical-align: baseline;
+			width: 0;
+			background: none;
+			border: none;
+			border-bottom: solid 2px var(--color-3);
+			outline: none;
+			color: var(--color-3);
+			text-shadow: 0 0 5px var(--color-1);
+			font-family: wczpt;
+		}
+
+		& div::after {
+			opacity: 1;
+			left: unset;
+			right: -3vw;
+			width: 400%;
+			opacity: 0;
+			height: 400%;
+			background: url("../img/illustration/cbgon2.png") no-repeat 100%/100% 50%;
+
+		}
+
+		&.on {
+			& div::after {
+				opacity: 0.7;
+			}
+
+			& input[type=search] {
+				width: 88%;
+			}
+
+			& label {
+				color: var(--color-3);
+			}
+		}
+	}
+
+	& #listBtn {
+		height: calc(var(--font-size) + 20px);
+		border-radius: 10px;
+		margin: 0 20px 5px;
+		cursor: pointer;
+		position: relative;
+		cursor: pointer;
+	}
+}
+
+/* below */
+.below {
+	& header {
+		background: #ffffff;
+		backdrop-filter: blur(5px);
+		max-height: 10vh;
+		box-shadow: 0 5px var(--color-1);
+	}
+
+	& header>img {
+		width: 10vh;
+		filter: none;
+	}
+}
+
+/* 1330 */
+@media screen and (max-width:1330px) {
+	header {
+		& nav section {
+			display: none;
+/* 			position: absolute;
+			flex-direction: column;
+			align-items: flex-start;
+			left: 0;
+			top: calc(var(--font-size) + 40px);
+			line-height: 1.5em;
+			background: url("../img/illustration/cbgon2.png")no-repeat center/100% 90%;
+			box-sizing: content-box;
+			height: calc(6*var(--font-size));
+			overflow: hidden;
+			color: var(--color-3);
+			opacity: 0;
+			padding: 20px 0px 0 10px;
+			pointer-events: none; */
+
+/* 			&.on {
+				pointer-events: all;
+				opacity: 1;
+			}
+
+			& a {
+				color: var(--color-3);
+				filter: none;
+
+				&:hover {
+					filter: drop-shadow(0 0 10px var(--color-3));
+				}
+			} */
+		}
+/* 
+		& #listBtn {
+			display: block;
+			filter: drop-shadow(0 0 10px var(--color-3));
+		} */
+	}
+}
+
+@media screen and (max-width:768px) {
+	header {
+		padding-right: 0;
+
+		& #searchBox.on input[type=search] {
+			width: 20vw;
+			font-size: 12px;
+		}
+
+		& input[type=search] {
+			font-size: 14px;
+		}
+
+		& #searchBox div::after {
+			width: 40vw;
+		}
+	}
+}
+
+@media screen and (max-width:480px) {
+	header {
+		padding: 10px;
+
+		& :is(article label, a) {
+			margin: 0 0px;
+		}
+
+		& #listBtn {
+			padding: 5px 10px;
+		}
+	}
+}

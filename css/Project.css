@@ -1,0 +1,402 @@
+/* loading */
+#loading {
+	--transition-duration: 3000ms;
+}
+
+/* header */
+header{
+	background: rgba(255, 255, 255, 0.8);
+	backdrop-filter: blur(20px);
+}
+
+/* totop */
+#toTop {
+	background: url("../img/illustration/cbgon.png")no-repeat center/100% 100%;
+}
+
+/* main */
+main {
+	color: var(--color-1);
+	--font-size: 20px;
+	--gap-size: 10px;
+	background: rgba(255, 255, 255, 0.5);
+	backdrop-filter: blur(20px);
+
+	& footer {
+		position: relative;
+	}
+
+	& div#main {
+		min-height: 100vh;
+		padding-top: calc(10vw + 40px);
+
+		& section#filter {
+			position: sticky;
+			z-index: 5;
+			top: 10vh;
+			align-items: center;
+			font-size: var(--font-size);
+			display: flex;
+			& h1 {
+				flex: none;
+				position: sticky;
+				left: var(--gap-size);
+			}
+
+			& article {
+				overflow: auto;
+				display: flex;
+
+				&::-webkit-scrollbar {
+					height: .5vh;
+				}
+
+				& div {
+					flex: none;
+					display: flex;
+
+					&>div {
+						cursor: pointer;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						width: calc(6 * var(--font-size));
+						font-family: wczpt;
+						padding: calc(2 * var(--gap-size)) var(--gap-size);
+						margin: 0 var(--gap-size);
+						background: url("../img/illustration/cbgon2.png") no-repeat center/0%, url("../img/illustration/circleon.png") no-repeat right 40%/0%;
+
+						&:is(:hover, :active) {
+							background: url("../img/illustration/cbgon2.png") no-repeat center/0%, url("../img/illustration/circleon.png")no-repeat 10% 40%/30%;
+						}
+
+						&.on {
+							color: white;
+							text-shadow: 0 0 10px var(--color-1);
+							background: url("../img/illustration/cbgon2.png") no-repeat center/100%, url("../img/illustration/circleon.png") no-repeat right 40%/0%;
+						}
+					}
+				}
+			}
+		}
+
+		& section#articleBox {
+			display: flex;
+			flex-direction: column;
+			counter-reset: listCounter;
+			align-items: stretch;
+			overflow: hidden;
+			& article {
+				box-shadow: 0 5px ;
+				max-width: 1330px;
+				--max-height: 60vh;
+				--inner-height: 35vh;
+				flex: none;
+				position: relative;
+				counter-increment: listCounter;
+				max-height: calc(10vh + 2 * var(--gap-size));
+				overflow: hidden;
+				display: flex;
+				flex-wrap: wrap;
+				margin: var(--gap-size) auto;
+				background: rgba(255, 255, 255, 1);
+				padding: var(--gap-size);
+
+				&::before {
+					content: counter(listCounter);
+					font-size: calc(var(--font-size));
+					position: absolute;
+				}
+				
+				&::after{
+					position: absolute;
+					content: '';
+					width: 50vmax;
+					height: 50vmax;
+					background: url("../img/logo/logo.png")no-repeat center/100%;
+					opacity: .25;
+					left: 100%;
+					top: 50%;
+					pointer-events: none;
+					transform: translate(-75%,-50%);
+				}
+				&.hide{
+					max-height: 0px;
+					padding: 0;
+					margin: 0;
+				}
+				&.on {
+					/* padding: 0; */
+					/* filter: drop-shadow(0 0 10px #da484a96); */
+					/* background: none; */
+					max-height: calc(var(--max-height) + 2 * var(--gap-size));
+
+					& div:nth-child(2) {
+						margin-top: calc(2 * var(--gap-size));
+					}
+
+					& div:nth-child(3) {
+						margin-top: calc(2 * var(--gap-size));
+					}
+
+					& div:nth-child(5) {
+						&::after {
+							content: '[收起]';
+						}
+					}
+					&.hide{
+						max-height: 0px;
+					}
+				}
+
+				& div {
+					margin-right: var(--gap-size);
+
+					&:nth-child(1) {
+						margin: calc(5vh - 2 * var(--gap-size)) var(--gap-size) 0;
+						width: 100%;
+						align-items: flex-end;
+						display: flex;
+
+						& h2 {
+							font-size: calc(3 * var(--font-size));
+							line-height: 1em;
+							margin-right: var(--gap-size);
+							font-family: wczpt;
+						}
+
+						& span {
+							font-size: calc(1.25 * var(--font-size));
+						}
+					}
+
+					&:nth-child(2) {
+						position: relative;
+						flex: 8;
+						margin-top: 10vh;
+						height: var(--inner-height);
+						display: flex;
+
+						& img {
+							position: absolute;
+							width: 80%;
+							height: 80%;
+							object-fit: cover;
+							left: 50%;
+							top: 50%;
+							transform: translate(-50%, -50%);
+							border-radius: 5px;
+
+							&.l1 {
+								z-index: 3;
+							}
+
+							&.l2 {
+								z-index: 1;
+								left: 0%;
+								top: 0%;
+								transform-origin: top left;
+								transform: translate(0, 0) scale(0.75);
+							}
+
+							&.l3 {
+								z-index: 1;
+								left: 100%;
+								top: 100%;
+								transform-origin: bottom right;
+								transform: translate(-100%, -100%) scale(0.75);
+							}
+
+							&.other {
+								transform: translate(-50%, -50%) scale(0);
+							}
+						}
+
+						& span {
+							user-select: none;
+							cursor: pointer;
+							position: absolute;
+							z-index: 2;
+							font-family: wczpt;
+							font-size: calc(3 * var(--font-size));
+							width: 50%;
+							height: 100%;
+							display: flex;
+							padding: 0 var(--gap-size);
+
+							&:nth-child(1) {
+								bottom: 0;
+								left: 0%;
+								align-items: flex-end;
+								background: url("../img/illustration/cbgon2.png") no-repeat -100% 100%/0% 40%;
+							}
+
+							&:nth-child(2) {
+								top: 0;
+								right: 0%;
+								justify-content: flex-end;
+								background: url("../img/illustration/cbgon2.png") no-repeat 200% 0%/0% 40%;
+							}
+
+							&:hover {
+								color: white;
+
+								/* background: url("../img/illustration/circleon.png") no-repeat 50% 40%/100%; */
+								&:nth-child(1) {
+									background: url("../img/illustration/cbgon2.png") no-repeat -100% 200%/80% 70%;
+								}
+
+								&:nth-child(2) {
+									background: url("../img/illustration/cbgon2.png") no-repeat 200% -100%/80% 70%;
+								}
+							}
+						}
+					}
+
+					&:nth-child(3) {
+						margin-right: 0;
+						margin-top: 10vh;
+						flex: 3;
+						overflow: auto;
+						height: var(--inner-height);
+						text-indent: 2em;
+						line-height: 2em;
+						scroll-snap-type: y proximity;
+						font-size: calc(.8 * var(--font-size));
+
+						/* scroll-behavior: smooth; */
+						& p {
+							scroll-snap-align: start;
+						}
+					}
+
+					&:nth-child(4) {
+						margin: var(--gap-size) 0;
+						flex: unset;
+						width: 100%;
+						display: flex;
+						align-items: center;
+						justify-content: space-between;
+						font-size: calc(1 * var(--font-size));
+
+						& span {
+							margin-top: calc(0.5 * var(--font-size));
+						}
+
+						& h3 span {
+							font-family: wczpt;
+							font-size: calc(1.75 * var(--font-size));
+						}
+
+						& h4 {
+							transition: .3s;
+							padding: 0 calc(2 * var(--gap-size));
+							cursor: pointer;
+							font-family: wczpt;
+							font-size: calc(2 * var(--font-size));
+							background: url("../img/illustration/cbgon2.png")no-repeat center/0%;
+
+							&:hover {
+								color: white;
+								background: url("../img/illustration/cbgon2.png")no-repeat center/100%;
+							}
+						}
+					}
+
+					&:nth-child(5) {
+						&::after {
+							/* background: #fff; */
+							/* padding: 10px 20px; */
+							pointer-events: all;
+							transition: 0.5s;
+							z-index: 3;
+							content: '[展开]';
+							cursor: pointer;
+							font-family: wczpt;
+							white-space: nowrap;
+							font-size: calc(1.25 * var(--font-size));
+							position: absolute;
+							top: calc((10vh + 2 * var(--gap-size)) / 2);
+							left: 100%;
+							transform: translate(-150%, -50%);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.below {
+	& main {
+		& section#filter {
+			background: rgba(255, 255, 255, 1);
+			box-shadow: 0 0 10px rgba(0,0,0,0.3);
+		}
+	}
+}
+
+@media screen and (max-width:768px) {
+	main {
+		& div#main {
+			& section#articleBox article {
+				& div:nth-child(1) {
+					--font-size: 14px;
+				}
+
+				& div:nth-child(3) {
+					flex: unset;
+				}
+
+				& div:nth-child(4) {
+					--font-size: 14px;
+				}
+
+				&.on {
+					--inner-height: 20vh;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width:430px) {
+	main {
+		--font-size: 18px;
+
+		& div#main {
+			& section#articleBox article {
+				max-height: 10vh;
+				--max-height: 65vh;
+
+				& div:nth-child(1) {
+					--font-size: 12px;
+				}
+
+				& div:nth-child(5)::after {
+					top: 5vh;
+					left: 100%;
+					transform: translate(-130%, -50%);
+				}
+
+				&.on {
+					& div:nth-child(1) {}
+
+					& div:nth-child(4) {
+						flex-wrap: wrap;
+
+						& .time {
+							width: 100%;
+						}
+					}
+
+					& div:nth-child(5)::after {
+						top: 5vh;
+						left: 100%;
+						transform: translate(-130%, -50%);
+					}
+				}
+			}
+		}
+	}
+}

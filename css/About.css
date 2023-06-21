@@ -1,0 +1,221 @@
+/* loading */
+#loading {
+	--transition-duration: 3000ms;
+}
+
+/* header */
+header,
+.below header {
+	background: rgba(255, 255, 255, 0.75);
+	backdrop-filter: blur(20px);
+}
+
+/* totop */
+#toTop {
+	background: url("../img/illustration/cbgon.png")no-repeat center/100% 100%;
+}
+
+/* main */
+main {
+	color: var(--color-1);
+	--font-size: 20px;
+	--gap-size: 20px;
+	background: rgba(255, 255, 255, 0.5);
+	backdrop-filter: blur(20px);
+
+	& footer {
+		position: relative;
+	}
+
+	& div#main {
+		min-height: 100vh;
+		padding-top: calc(10vw + 40px);
+
+		& section {
+			position: relative;
+			margin-bottom: 40px;
+			background: var(--color-2);
+			overflow: hidden;
+			padding: var(--gap-size);
+			color: white;
+
+			& h1 {
+				font-family: wczpt;
+				width: 100%;
+				text-align: center;
+				font-size: calc(3 * var(--font-size));
+				padding: var(--gap-size);
+
+				& span {
+					position: relative;
+					z-index: 1;
+				}
+			}
+
+			&>div {
+				max-width: 1000px;
+				margin: 0px auto;
+				font-size: calc(1 * var(--font-size));
+
+				&
+				p {
+					position: relative;
+				text-indent: 2em;
+				line-height: 2em;
+				}
+			}
+
+			& img {
+				position: absolute;
+				height: 75vmax;
+				left: 50%;
+				top: 50%;
+				transform: translate(-100%, -50%);
+				mix-blend-mode: soft-light;
+				pointer-events: none;
+			}
+
+			&:nth-child(2n) {
+				background-color: white;
+				color: var(--color-1);
+
+				& img {
+					transform: translate(0%, -50%);
+					mix-blend-mode: normal;
+					opacity: 0.15;
+				}
+
+				&>div {
+					display: flex;
+					justify-content: space-between;
+					flex-wrap: wrap;
+
+					& article {
+						&>p {
+							text-indent: 0;
+							position: relative;
+							cursor: pointer;
+							text-align: center;
+							padding: 0px;
+							font-size: calc(1.5 * var(--font-size));
+
+							&::
+							after {
+								transition: .5s;
+							position: absolute;
+							content: ">";
+							transform-origin: 90%;
+							}
+						}
+
+						& div {
+							font-size: calc(1 * var(--font-size));
+							max-height: 0;
+							overflow: hidden;
+						}
+
+						&.on {
+							&>p {
+								color: white;
+								font-family: wczpt;
+								background: url("../img/illustration/cbgon.png") no-repeat center/100% 100%;
+
+								&::after {
+									transform: rotate(-90deg);
+								}
+							}
+
+							& div {
+								font-size: calc(1 * var(--font-size));
+								max-height: 100vh;
+							}
+						}
+					}
+				}
+			}
+
+			& form {
+				position: relative;
+				max-width: 768px;
+				margin: 0 auto;
+				display: flex;
+				flex-direction: column;
+				align-items: stretch;
+				font-size: calc(1 * var(--font-size));
+
+				& div {
+					margin: var(--gap-size);
+					display: flex;
+					position: relative;
+				}
+				
+				
+				
+				
+				
+				
+
+				& label {
+					pointer-events: none;
+				position: absolute;
+				left:5px;
+				top: 50%;
+				transform: translate(0,-50%);
+				font-size: calc(1.5 * var(--font-size));
+				}
+				& span{
+					position: absolute;
+					display: flex;
+					align-items: center;
+					right: 0;
+					top:50%;
+					transform: translate(0,-50%);
+				}
+				& input {
+					transition: .5s;
+					color: white;
+					font-family: cejk;
+					font-size: calc(1.5 * var(--font-size));
+					width: 100%;
+					background: none;
+					outline: none;
+					border: none;
+					border-bottom: 1px solid white;
+					padding: 5px var(--gap-size);
+
+					&:-webkit-autofill {
+						transition: 99999s 99999s ease-out;
+					}
+					&:valid+label{
+						transform: translate(0,calc(-100% - var(--font-size)));
+						font-size: calc(1 * var(--font-size));
+					}
+					&[type = submit]{
+						cursor: pointer;
+						background: white;
+						color:var(--color-1);
+						margin:20px 0;
+						&.on{
+							
+						}
+					}
+				}
+			}
+		}
+	}
+}
+@media screen and (max-width:768px) {
+	main{
+		--font-size:16px;
+		--gap-size:15px;
+		& section article div p{
+			font-size:18px;
+		}
+	}
+}
+@media screen and (max-width:430px) {
+	main{
+		--font-size:14px;
+		--gap-size:10px;
+	}
+}

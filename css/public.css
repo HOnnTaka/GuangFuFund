@@ -1,0 +1,240 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	transition: .5s;
+	/* user-select: none; */
+	/* touch-action: pan-y; */
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: "wczpt";
+	src: url("../others/wczpt.ttf");
+	font-display: auto;
+}
+
+@font-face {
+	font-family: "cejk";
+	src: url("../others/cejk.ttf");
+	font-display: auto;
+}
+
+:root {
+	/* 		--color-1:#054f74;
+	--color-2:#6e9ec0;
+	--color-3:#f3e2c2; */
+	--color-1: #a81e32;
+	--color-2: #7f1e1e;
+	--color-3: #fff;
+	--font-size: 26px;
+}
+
+body,
+html {
+	background: var(--color-3);
+	background-size: 50%;
+	overflow-x: hidden;
+	font-family: cejk;
+}
+
+main{
+	position: fixed;
+	overflow-y: auto;
+	overflow-x: hidden;
+	width: 100vw;
+	height: 100vh;
+	color: var(--color-3);
+	scroll-behavior: smooth;
+	scroll-snap-type: y mandatory;
+	z-index: 10;
+	pointer-events: all;
+	top: 0;
+	left: 0;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+	width: 0.5vw;
+	overflow: auto;
+}
+
+::-webkit-scrollbar-track {
+	border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--color-1);
+	border-radius: 10px;
+}
+
+/* toastBox */
+#toastBox {
+	position: fixed;
+	top: 10vh;
+	left: 50%;
+	z-index: 200;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: wczpt;
+	color: var(--color-1);
+	font-size: var(--font-size);
+	transform: scale(1.1) translate(-50%, 0);
+	padding: 10px 0 5px;
+	pointer-events: none;
+	opacity: 0;
+	filter: drop-shadow(0 0 10px white);
+
+	&.on {
+		transform: scale(1) translate(-50%, 0);
+		opacity: 1;
+	}
+
+	& p {
+		position: relative;
+		z-index: 201;
+		color: var(--color-3);
+	}
+
+	&::after {
+		content: '';
+		background: url("../img/illustration/cbgon2.png") center no-repeat;
+		background-size: 40%;
+		width: 500%;
+		height: 500%;
+		position: absolute;
+		opacity: 0.9;
+	}
+}
+
+/* comfirm */
+#comfirm {
+	pointer-events: none;
+	opacity: 0;
+	transform: scale(2);
+	position: fixed;
+	z-index: 150;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(255,255,255,0.5);
+	backdrop-filter: blur(10px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: var(--color-1);
+	font-family: wczpt;
+	font-size: calc(2 * var(--font-size));
+
+	&>div {
+		& p {
+			text-align: center;
+			padding: 10px 60px;
+		}
+
+		& article {
+			&:nth-of-type(1) {
+				margin: 10px 0;
+				background: url("../img/illustration/cbgon2.png") no-repeat center/100% 100%;
+				visibility: hidden;
+
+				& input {
+					width: 100%;
+					text-align: center;
+					color: white;
+					outline: none;
+					background: none;
+					font-family: cejk;
+					margin: 10px;
+					border: none;
+					padding: 5px;
+					font-size: var(--font-size);
+					&::-webkit-outer-spin-button,
+					&::-webkit-inner-spin-button{
+					appearance:none;
+					}
+				}
+
+				&.on {
+					visibility: visible;
+				}
+			}
+
+			&:nth-of-type(2) {
+				display: flex;
+				justify-content: space-around;
+
+				& div {
+					cursor: pointer;
+					user-select: none;
+					padding: 20px;
+					background: url("../img/illustration/circleon.png") no-repeat 15%/50%;
+
+					&:hover {
+						color: white;
+						background: url("../img/illustration/circleon.png") no-repeat center/70%;
+					}
+				}
+			}
+		}
+	}
+
+	&.on {
+		pointer-events: all;
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+/* toTop */
+#toTop {
+	width: 5vmax;
+	height: 5vmax;
+	position: fixed;
+	bottom: 5vh;
+	right: 5vh;
+	z-index: 40;
+	background: url("../img/illustration/circleon.png")no-repeat 50%/0% 0%;
+	border-radius: 50%;
+	font-family: wczpt;
+	color: var(--color-3);
+	transform: rotate(90deg);
+	font-size: 6vmax;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 0;
+	pointer-events: none;
+	cursor: pointer;
+	filter: drop-shadow(0 0 5px var(--color-1));
+
+	&:is(:active, :hover) {
+		font-size: 5vmax;
+		background: url("../img/illustration/cbgon.png")no-repeat center/100% 100%;
+	}
+
+	&.on {
+		opacity: 1;
+		pointer-events: all;
+	}
+}
+
+@media screen and (min-width:2560px) {
+	:root {
+		--font-size: 38px;
+	}
+}
+
+@media screen and (max-width:768px) {
+	:root {
+		--font-size: 22px;
+	}
+}
+
+@media screen and (max-width:480px) {
+	:root {
+		/* --font-size: 18px; */
+	}
+}
